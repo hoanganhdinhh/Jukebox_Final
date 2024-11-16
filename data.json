@@ -1,0 +1,146 @@
+[
+    {
+        "name": "Another Brick in the Wall",
+        "artist": "Pink Floyd",
+        "composer": "Roger Waters",
+        "music_instrument": "test",
+        "link": "https://www.youtube.com/watch?v=YR5ApYxkU-U",
+        "rating": 1
+    },
+    {
+        "name": "Stayin' Alive",
+        "artist": "Bee Gees",
+        "composer": "The Bee Gees",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=fNFzfwLM72c",
+        "rating": 5
+    },
+    {
+        "name": "Highway to Hell",
+        "artist": "AC/DC",
+        "composer": "Bon Scott",
+        "music_instrument": "test",
+        "link": "https://www.youtube.com/watch?v=l482T0yNkeo",
+        "rating": 2
+    },
+    {
+        "name": "Shape of You",
+        "artist": "Ed Sheeran",
+        "composer": "Lyle Haylett",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+        "rating": 4
+    },
+    {
+        "name": "Someone Like You",
+        "artist": "Adele",
+        "composer": "Adele and Dan Wilson",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=hLQl3WQQoQ0",
+        "rating": 3
+    },
+    {
+        "name": "Stairway to Heaven",
+        "artist": "Led Zeppelin",
+        "composer": "Jimmy Page, Robert Plant",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=d-diB65sczU",
+        "rating": 2
+    },
+    {
+        "name": "Bohemian Rhapsody",
+        "artist": "Queen",
+        "composer": "Freddie Mercury",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=fJ9rUzhpPEU",
+        "rating": 5
+    },
+    {
+        "name": "I Want to Hold Your Hand",
+        "artist": "The Beatles",
+        "composer": "John Lennon, Paul McCartney",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=4kCt0SzvYcU",
+        "rating": 3
+    },
+    {
+        "name": "Sweet Home Alabama",
+        "artist": "Lynyrd Skynyrd",
+        "composer": "Ronnie Van Zant, Gary Rossington, Allen Collins",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=46jmFcITpyI",
+        "rating": 4
+    },
+    {
+        "name": "Hey Jude",
+        "artist": "The Beatles",
+        "composer": "Paul McCartney",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=aJOTlE1t00k",
+        "rating": 5
+    },
+    {
+        "name": "Born to Run",
+        "artist": "Bruce Springsteen",
+        "composer": "Bruce Springsteen",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=4K4w9J_U0M",
+        "rating": 1
+    },
+    {
+        "name": "Imagine",
+        "artist": "John Lennon",
+        "composer": "John Lennon",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=LPj8VLyriLU",
+        "rating": 5
+    },
+    {
+        "name": "Hallelujah",
+        "artist": "Leonard Cohen",
+        "composer": "Leonard Cohen",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=y8AWFf7b224",
+        "rating": 4
+    },
+    {
+        "name": "Don't Stop Believin'",
+        "artist": "Journey",
+        "composer": "Steve Perry, Jonathan Cain",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=LBXv2fX9Z7o",
+        "rating": 3
+    },
+    {
+        "name": "I Will Always Love You",
+        "artist": "Whitney Houston",
+        "composer": "Dolly Parton",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=3JWTaaS19MY",
+        "rating": 5
+    },
+    {
+        "name": "Thriller",
+        "artist": "Michael Jackson",
+        "composer": "Michael Jackson, Rod Temperton",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=sOnQoyI-drc",
+        "rating": 2
+    },
+    {
+        "name": "Smells Like Teen Spirit",
+        "artist": "Nirvana",
+        "composer": "Kurt Cobain",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=hTWPBqCWmg0",
+        "rating": 4
+    },
+    {
+        "name": "Beat It",
+        "artist": "Michael Jackson",
+        "composer": "Michael Jackson, Paul McCartney",
+        "music_instrument": " ",
+        "link": "https://www.youtube.com/watch?v=oHg5SJYRHA0",
+        "rating": 5
+    }
+]
