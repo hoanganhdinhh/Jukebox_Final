@@ -31,7 +31,7 @@ class PlayTrack: # Create a class PlayTrack
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10)) # Create a status label
         self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)  # Place the status label in the window
         
-        play_btn = tk.Button(window, text="Play", command=lambda: self.open_yt())   # Create a play button to open the youtube link of the current track
+        play_btn = tk.Button(window, text="Play", command=lambda: self.play_track())   # Create a play button to open the youtube link of the current track
         play_btn.grid(row=2, column=3, padx= 10, pady= 10)  # Place the play button in the window
         
         self.list_tracks_clicked() # Call the list_tracks_clicked function to list all the tracks
@@ -60,7 +60,7 @@ class PlayTrack: # Create a class PlayTrack
             set_text(self.track_txt, track_details) # Set the text of the track text box to the track details
 
 
-    def open_yt(self): # declare a function openning the youtube link of the current track
+    def play_track(self): # declare a function openning the youtube link of the current track
         key = self.current_key  # Get the current key
         link = lib.get_link(key) # Get the link of the track using the key
         if link is None:    # If no link was found for the track
