@@ -5,6 +5,7 @@ from update_tracks import UpdateTracksViewer
 from create_track_list import CreateTrackList
 from play_track import PlayTrack
 from delete_track_list import DeleteTrackList
+from configure_tracks import ConfigureTracks
 
 def view_tracks_clicked(): 
     status_lbl.configure(text="View Tracks button was clicked!")   # Update the status label to indicate the View Tracks button was clicked
@@ -26,8 +27,12 @@ def delete_tracks_clicked():
     status_lbl.configure(text="Delete Track button was clicked!")
     DeleteTrackList(tk.Toplevel(window))
 
+def config_track_clicked():
+    status_lbl.configure(text="Configure Track button was clicked!")
+    ConfigureTracks(tk.Toplevel(window))
+    
 window = tk.Tk()
-window.geometry("520x210")
+window.geometry("550x210")
 window.title("JukeBox")
 window.configure(bg="gray")
 
@@ -44,6 +49,9 @@ create_track_list_btn.grid(row=1, column=1, padx=10, pady=10)
 
 update_tracks_btn = tk.Button(window, text="Update Tracks", command=update_tracks_clicked)
 update_tracks_btn.grid(row=1, column=2, padx=10, pady=10)
+
+config_tracks_btn = tk.Button(window, text="Configure Tracks", command=config_track_clicked)
+config_tracks_btn.grid(row=2, column=0, padx=10, pady=10)
 
 play_tracks_btn = tk.Button(window, text="Play Tracks", command=play_tracks_clicked)
 play_tracks_btn.grid(row=2, column=1, padx=10, pady=10)
