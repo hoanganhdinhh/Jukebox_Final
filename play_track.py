@@ -56,7 +56,7 @@ class PlayTrack:                      # Create a class PlayTrack
             music_instrument = lib.get_music_instrument(key)  # Get the music instrument of the track using the key
             rating = lib.get_rating(key)                      # Get the rating of the track using the key
             play_count = lib.get_play_count(key)              # Get the play count of the track using the key
-            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}\nplays: {play_count}"   # Create a string with the track details
+            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}\nplay count: {play_count}"   # Create a string with the track details
             set_text(self.track_txt, track_details)           # Set the text of the track text box to the track details
 
 
@@ -67,6 +67,7 @@ class PlayTrack:                      # Create a class PlayTrack
             self.status_lbl.configure(text="No link found for this track")   # Set the status label to indicate that no link was found
         elif link.startswith("https://www.youtube.com/"):                    # If the link is a valid youtube link as "https://www.youtube.com/..."
             webbrowser.open(link)                                            # Open the link in the web browser
+            lib.increment_play_count(key)                                    # Increment the play count of the track
             self.status_lbl.configure(text="Play Track button was clicked!") # Set the status label when the play track button was clicked
         else:
             self.status_lbl.configure(text="Invalid link for this track")    # Set the status label when the link is invalid
