@@ -29,7 +29,7 @@ class TrackViewer():
         self.list_txt = tkst.ScrolledText(window, width=58, height=12, wrap="none")
         self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
 
-        self.track_txt = tk.Text(window, width=24, height=7, wrap="none")
+        self.track_txt = tk.Text(window, width=24, height=6, wrap="none")
         self.track_txt.grid(row=1, column=3, sticky="NW", padx=10, pady=10)
 
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
