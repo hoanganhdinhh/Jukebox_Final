@@ -11,30 +11,30 @@ def set_text(text_area, content):
 
 
 class PlayTrack:
-    def __init__(self, window):
-        window.geometry("820x380")
-        window.title("Play Track")
+    def __init__(self, window):    # Create a class PlayTrack 
+        window.geometry("820x380") # Set the size of the window
+        window.title("Play Track") # Set the title of the window
 
-        list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
-        list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
+        list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked) # Create a button to list all the tracks
+        list_tracks_btn.grid(row=0, column=0, padx=10, pady=10) # Place the list tracks button in the window
 
-        header_lbl = tk.Label(window, text="Select a track by clicking on it")
-        header_lbl.grid(row=0, column=1, padx=10, pady=10)
+        header_lbl = tk.Label(window, text="Select a track by clicking on it") # Create a header label
+        header_lbl.grid(row=0, column=1, padx=10, pady=10)  # Place the header label in the window
 
-        self.list_txt = tkst.ScrolledText(window, width=58, height=12, wrap="none")
-        self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
-        self.list_txt.bind("<Button-1>", self.track_clicked)
+        self.list_txt = tkst.ScrolledText(window, width=58, height=12, wrap="none") # Create a scrolled text box to display the list of tracks
+        self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10) # Place the list text box in the window
+        self.list_txt.bind("<Button-1>", self.track_clicked) # Bind the track_clicked function to the left mouse button click event
 
-        self.track_txt = tk.Text(window, width=24, height=6, wrap="none")
-        self.track_txt.grid(row=1, column=3, sticky="NW", padx=10, pady=10)
+        self.track_txt = tk.Text(window, width=24, height=6, wrap="none")   # Create a text box to display the track details
+        self.track_txt.grid(row=1, column=3, sticky="NW", padx=10, pady=10)  # Place the track text box in the window
 
-        self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
-        self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)
+        self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10)) # Create a status label
+        self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)  # Place the status label in the window
         
-        play_btn = tk.Button(window, text="Play", command=lambda: self.open_yt())
-        play_btn.grid(row=2, column=3, padx= 10, pady= 10)
+        play_btn = tk.Button(window, text="Play", command=lambda: self.open_yt())   # Create a play button to open the youtube link of the current track
+        play_btn.grid(row=2, column=3, padx= 10, pady= 10)  # Place the play button in the window
         
-        self.list_tracks_clicked()
+        self.list_tracks_clicked() # Call the list_tracks_clicked function to list all the tracks
 
 
     def list_tracks_clicked(self): 
