@@ -10,8 +10,8 @@ def set_text(text_area, content):
     text_area.insert(1.0, content)
 
 
-class PlayTrack:
-    def __init__(self, window):    # Create a class PlayTrack 
+class PlayTrack: # Create a class PlayTrack 
+    def __init__(self, window):    
         window.geometry("820x380") # Set the size of the window
         window.title("Play Track") # Set the title of the window
 
@@ -37,17 +37,17 @@ class PlayTrack:
         self.list_tracks_clicked() # Call the list_tracks_clicked function to list all the tracks
 
 
-    def list_tracks_clicked(self): 
+    def list_tracks_clicked(self):  # declare a function to list all the tracks
         track_list = lib.list_all() # Get the list of all tracks
         set_text(self.list_txt, track_list) # Set the text of the list text box to the track list
         self.status_lbl.configure(text="List Tracks button was clicked!") # Set the status label when the list tracks button was clicked
 
-    def track_clicked(self, event):
+    def track_clicked(self, event): # declare a function to handle the track clicked event
         index = self.list_txt.index("@%s,%s" % (event.x, event.y)) # Get the index of the text at the position of the mouse click event
         line = self.list_txt.get(index + " linestart", index + " lineend") # Get the entire line of text at the specified index
         self.set_current_track(line) # Set the current track using the retrieved line of text
 
-    def set_current_track(self, track):
+    def set_current_track(self, track): # declare a function to set the current track
         self.current_key = key = int(track.split()[0]) - 1 # Get the key of the track from the first word of the track string
         name = lib.get_name(key) # Get the name of the track using the key
         if name is not None:
