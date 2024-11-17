@@ -91,7 +91,7 @@
         "name": "Imagine",
         "artist": "John Lennon",
         "composer": "John Lennon",
-        "music_instrument": " ",
+        "music_instrument": "test",
         "link": "https://www.youtube.com/watch?v=LPj8VLyriLU",
         "rating": 5
     },
@@ -139,7 +139,7 @@
         "name": "Beat It",
         "artist": "Michael Jackson",
         "composer": "Michael Jackson, Paul McCartney",
-        "music_instrument": " ",
+        "music_instrument": " test",
         "link": "https://www.youtube.com/watch?v=oHg5SJYRHA0",
         "rating": 5
     }

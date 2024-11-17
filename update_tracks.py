@@ -82,11 +82,13 @@ class UpdateTracksViewer():
             self.current_key = key      
             artist = lib.get_artist(key)
             composer = lib.get_composer(key)
+            music_instrument = lib.get_music_instrument(key)
             link = lib.get_link(key)
             rating = lib.get_rating(key)
             self.input_name.insert(0, name)        
             self.input_artist.insert(0, artist)
             self.input_composer.insert(0, composer)
+            self.input_music_instrument.insert(0, music_instrument)
             self.input_link.insert(0, link)
             self.input_rating.insert(0, rating)
         

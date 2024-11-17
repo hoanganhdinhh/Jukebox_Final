@@ -1,12 +1,12 @@
 class LibraryItem:
-    def __init__(self, name, artist, composer, music_instrument, link, rating=0):
+    def __init__(self, name, artist, composer, music_instrument, link, rating=0, play_count=0):
         self.name = name
         self.artist = artist
         self.composer = composer
         self.music_instrument = music_instrument
         self.link = link
         self.rating = rating
-        self.play_count = 0
+        self.play_count = play_count
 
     def info(self):
         return f" {self.name} - {self.artist} - {self.composer} - {self.music_instrument}  {self.stars()}"
