@@ -22,54 +22,46 @@ class CreateTrackList:
         self.name_lb = tk.Label(window, text="name:")
         self.name_lb.grid(row=1, column=3, sticky="S", padx=1, pady=1)
 
-        self.input_name = tk.Entry(window)
+        self.input_name = tk.Entry(window, width=27)
         self.input_name.grid(row=1, column=4, sticky="S", padx=5, pady=5)
 
         self.artist_lb = tk.Label(window, text="artist:")
         self.artist_lb.grid(row=2, column=3, padx=10, pady=10)
 
-        self.input_artist = tk.Entry(window)
+        self.input_artist = tk.Entry(window, width=27)
         self.input_artist.grid(row=2, column=4, padx=5, pady=5)
 
         self.composer_lb = tk.Label(window, text="composer:")
         self.composer_lb.grid(row=3, column=3, padx=10, pady=10)
 
-        self.input_composer = tk.Entry(window)
+        self.input_composer = tk.Entry(window, width=27)
         self.input_composer.grid(row=3, column=4, padx=5, pady=5)
 
-        self.link_lb = tk.Label(window, text="youtube link:")
-        self.link_lb.grid(row=4, column=3, padx=10, pady=10)
+        self.music_instrument_lb = tk.Label(window, text="music instrument:")
+        self.music_instrument_lb.grid(row=4, column=3, padx=10, pady=10)
 
-        self.input_link = tk.Entry(window)
-        self.input_link.grid(row=4, column=4, padx=5, pady=5)
+        self.input_music_instrument = tk.Entry(window, width=27)
+        self.input_music_instrument.grid(row=4, column=4, padx=5, pady=5)
+
+        self.link_lb = tk.Label(window, text="youtube link:")
+        self.link_lb.grid(row=5, column=3, padx=10, pady=10)
+
+        self.input_link = tk.Entry(window, width=27)
+        self.input_link.grid(row=5, column=4, padx=5, pady=5)
 
         self.rating_lb = tk.Label(window, text="rating:")
-        self.rating_lb.grid(row=5, column=3, padx=10, pady=10)
+        self.rating_lb.grid(row=6, column=3, padx=10, pady=10)
 
-        self.input_rating = tk.Entry(window)
-        self.input_rating.grid(row=5, column=4, padx=5, pady=5)
+        self.input_rating = tk.Entry(window, width=27)
+        self.input_rating.grid(row=6, column=4, padx=5, pady=5)
 
         self.btn_create = tk.Button(window, text="create", command=self.create_track)
-        self.btn_create.grid(row=6, column=4, padx=5, pady=5)
+        self.btn_create.grid(row=7, column=4, padx=5, pady=5)
 
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
         self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)
 
         self.list_tracks_clicked()
-
-    def view_tracks_clicked(self):
-        key = int(self.input_txt.get()) - 1
-        name = lib.get_name(key)
-        if name is not None:
-            artist = lib.get_artist(key)
-            composer = lib.get_composer(key)
-            rating = lib.get_rating(key)
-            play_count = lib.get_play_count(key)
-            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nrating: {rating}\nplays: {play_count}"
-            set_text(self.track_txt, track_details)
-        else:
-            set_text(self.track_txt, f"Track {key} not found")
-        self.status_lbl.configure(text="View Track button was clicked!")
 
     def list_tracks_clicked(self):
         track_list = lib.list_all()
@@ -80,12 +72,14 @@ class CreateTrackList:
         name = self.input_name.get()
         artist = self.input_artist.get()
         composer = self.input_composer.get()
+        music_instrument = self.input_music_instrument.get()
         link = self.input_link.get()
         rating = self.input_rating.get()
         new = {}
         new["name"] = name
         new["artist"] = artist
         new["composer"] = composer
+        new["music_instrument"] = music_instrument
         new["link"] = link
         new["rating"] = int(rating)
         set_item(get_len(),new)
