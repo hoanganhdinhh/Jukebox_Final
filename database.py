@@ -24,7 +24,10 @@ def set_item(index: int, value: dict[str, str | int]):
         save()
 
 def has(index: int):
-    return True if index < get_len() and index >= 0 else False 
+    if index < get_len() and index >= 0:
+        return True
+    else:
+        return False 
 
 def delete_item(index: int):
     if has(index): 

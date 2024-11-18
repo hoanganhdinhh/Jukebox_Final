@@ -41,24 +41,6 @@ class DeleteTrackList:
 
         self.list_tracks_clicked()
         self.current_key = None
-
-    def edit_tracks_clicked(self):
-        key = int(self.input_txt.get()) - 1
-        name = lib.get_name(key)
-        if name is not None:
-            self.current_key = key
-            artist = lib.get_artist(key)
-            composer = lib.get_composer(key)
-            link = lib.get_link(key)
-            rating = lib.get_rating(key)
-            self.input_name.insert(0, name)        
-            self.input_artist.insert(0, artist)
-            self.input_composer.insert(0, composer)
-            self.input_link.insert(0, link)
-            self.input_rating.insert(0, rating)
-        
-           
-        self.status_lbl.configure(text="View Track button was clicked!")
     
     def view_tracks_clicked(self):
         key = int(self.input_num.get()) - 1
