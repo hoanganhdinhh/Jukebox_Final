@@ -46,13 +46,5 @@
         "music_instrument": " ",
         "link": "https://www.youtube.com/watch?v=QkF3oxziUI4",
         "rating": 2
-    },
-    {
-        "name": "Hello",
-        "artist": "Adele",
-        "composer": "idk",
-        "music_instrument": "idk",
-        "link": "https://www.youtube.com/watch?v=YQHsXMglC9A",
-        "rating": 4
     }
 ]
