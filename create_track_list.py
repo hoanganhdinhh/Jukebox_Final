@@ -10,7 +10,7 @@ def set_text(text_area, content):
 
 class CreateTrackList:
     def __init__(self, window):
-        window.geometry("930x590")
+        window.geometry("1000x610")
         window.title("Create Track List")
 
         list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
