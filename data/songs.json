@@ -3,7 +3,7 @@
         "name": "Another Brick in the Wall",
         "artist": "Pink Floyd",
         "composer": "Roger Waters",
-        "music_instrument": "test",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=YR5ApYxkU-U",
         "rating": 1
     },
@@ -11,7 +11,7 @@
         "name": "Stayin' Alive",
         "artist": "Bee Gees",
         "composer": "The Bee Gees",
-        "music_instrument": " ",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=fNFzfwLM72c",
         "rating": 5
     },
@@ -19,7 +19,7 @@
         "name": "Highway to Hell",
         "artist": "AC/DC",
         "composer": "Bon Scott",
-        "music_instrument": "test",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=l482T0yNkeo",
         "rating": 2
     },
@@ -27,7 +27,7 @@
         "name": "Shape of You",
         "artist": "Ed Sheeran",
         "composer": "Lyle Haylett",
-        "music_instrument": " ",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
         "rating": 4
     },
@@ -35,7 +35,7 @@
         "name": "Someone Like You",
         "artist": "Adele",
         "composer": "Adele and Dan Wilson",
-        "music_instrument": " ",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=hLQl3WQQoQ0",
         "rating": 3
     },
@@ -43,7 +43,7 @@
         "name": "Stairway to Heaven",
         "artist": "Led Zeppelin",
         "composer": "Jimmy Page, Robert Plant",
-        "music_instrument": " ",
+        "music_instrument": "none",
         "link": "https://www.youtube.com/watch?v=QkF3oxziUI4",
         "rating": 2
     }

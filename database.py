@@ -2,7 +2,7 @@ import json
 
 db = []
 
-file = open("./data.json", "r+", encoding="utf-8")
+file = open("./data/songs.json", "r+", encoding="utf-8")
 
 db = json.load(file)
 
@@ -13,7 +13,7 @@ def get_all():
     return db
 
 def get_len(): 
-    return len(db) 
+    return len(db)
 
 def set_item(index: int, value: dict[str, str | int]):
     if has(index):

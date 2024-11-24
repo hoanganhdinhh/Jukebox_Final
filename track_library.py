@@ -19,6 +19,13 @@ def list_all():  # Define the list_all function to list all library items
         output += f"{key + 1} {item.info()}\n"  # Append the item's info to the output string with a line break
     return output  # Return the complete output string
 
+def get_length_from_name(name):
+    update()  # Refresh the library list
+    count = 0  # Initialize a counter to zero
+    for item in library:  # Loop through each item in the library
+        if item.name == name:  # Check if the item's name matches the given name
+            count += 1  # Increment the counter if there's a match
+    return count  # Return the total count
 
 def get_name(key):
     if not has(key): return None
