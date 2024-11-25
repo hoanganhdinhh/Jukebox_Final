@@ -31,7 +31,7 @@ class PlayTrack:
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
         self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)
         
-        play_btn = tk.Button(window, text="Play", command=lambda: self.play_track())
+        play_btn = tk.Button(window, text="Play",activebackground='red', command=lambda: self.play_track())
         play_btn.grid(row=2, column=3, padx= 10, pady= 10) 
         
         self.list_tracks_clicked()

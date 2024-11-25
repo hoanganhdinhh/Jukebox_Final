@@ -2,7 +2,7 @@ import tkinter as tk
 import track_library as lib
 import tkinter.scrolledtext as tkst
 import font_manager as fonts
-from database import set_item, get_len
+from songs_database import set_item, get_len
 
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)

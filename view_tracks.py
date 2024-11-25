@@ -13,7 +13,7 @@ class TrackViewer():
         window.geometry("810x350")
         window.title("View Tracks")
 
-        list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
+        list_tracks_btn = tk.Button(window, text="List All Tracks",activebackground='red', command=self.list_tracks_clicked)
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
         enter_lbl = tk.Label(window, text="Enter Track Number")
@@ -22,7 +22,7 @@ class TrackViewer():
         self.input_txt = tk.Entry(window, width=3)
         self.input_txt.grid(row=0, column=2, padx=10, pady=10)
 
-        check_track_btn = tk.Button(window, text="View Track", command=self.view_tracks_clicked)
+        check_track_btn = tk.Button(window, text="View Track",activebackground='red', command=self.view_tracks_clicked)
         check_track_btn.grid(row=0, column=3, padx=10, pady=10)
 
         self.list_txt = tkst.ScrolledText(window, width=58, height=12, wrap="none")

@@ -14,14 +14,15 @@ class Playlist:
     def __init__(self, window):
         window.geometry("1250x480")
         window.title("Playlist")
+        window.configure(bg="light blue")
 
-        list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
+        list_tracks_btn = tk.Button(window, text="List All Tracks",activebackground='red', command=self.list_tracks_clicked)
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
         header_lbl = tk.Label(window, text="Select a track by clicking on it")
         header_lbl.grid(row=0, column=1, padx=10, pady=10)
 
-        list_playlist_btn = tk.Button(window, text="List Playlist", command=self.load_playlist_clicked)
+        list_playlist_btn = tk.Button(window, text="List Playlist",activebackground='red', command=self.load_playlist_clicked)
         list_playlist_btn.grid(row=0, column=4, padx=10, pady=10)
         
         self.list_txt = tkst.ScrolledText(window, width=65, height=12, wrap="none")
@@ -39,13 +40,13 @@ class Playlist:
         scrollbar.config(command=self.listbox.yview)
         self.listbox.grid(row=1, column=4, columnspan=3, padx=10, pady=10)
 
-        add_btn = tk.Button(window, text="Add", command=self.add_track_clicked)
+        add_btn = tk.Button(window, text="Add", activebackground='red', command=self.add_track_clicked)
         add_btn.grid(row=2, column=3, padx= 10, pady= 10)
 
-        play_btn = tk.Button(window, text="Play", command=self.play_track_in_playlist)
+        play_btn = tk.Button(window, text="Play",activebackground='red', command=self.play_track_in_playlist)
         play_btn.grid(row=2, column=4, padx= 10, pady= 10)
 
-        reset_btn = tk.Button(window, text="Reset", command=self.reset_playlist_clicked)
+        reset_btn = tk.Button(window, text="Reset",activebackground='red', command=self.reset_playlist_clicked)
         reset_btn.grid(row=2, column=5, padx= 10, pady= 10) 
 
         self.status_lbl = tk.Label(window, text="")

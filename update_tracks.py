@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import font_manager as fonts
-from database import get_item, set_item
+from songs_database import get_item, set_item
 
 
 def set_text(text_area, content):
@@ -10,12 +10,13 @@ def set_text(text_area, content):
     text_area.insert(1.0, content)
 
 
-class UpdateTracksViewer():
+class UpdateTracks():
     def __init__(self, window):
         window.geometry("990x610")
         window.title("Update Tracks")
+        window.configure(bg="light blue")
 
-        list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
+        list_tracks_btn = tk.Button(window, text="List All Tracks",activebackground='red', command=self.list_tracks_clicked)
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
         enter_lbl = tk.Label(window, text="Enter Track Number")
@@ -24,7 +25,7 @@ class UpdateTracksViewer():
         self.input_txt = tk.Entry(window, width=3)
         self.input_txt.grid(row=0, column=3, padx=10, pady=10)
 
-        check_track_btn = tk.Button(window, text="Edit Track", command=self.edit_tracks_clicked)
+        check_track_btn = tk.Button(window, text="Edit Track",activebackground='red', command=self.edit_tracks_clicked)
         check_track_btn.grid(row=0, column=4, padx=10, pady=10)
 
         self.list_txt = tkst.ScrolledText(window, width=55, height=12, wrap="none")
@@ -69,7 +70,7 @@ class UpdateTracksViewer():
         self.input_rating = tk.Entry(window, width=27)
         self.input_rating.grid(row=6, column=4, padx=5, pady=5)
 
-        self.btn_update = tk.Button(window, text="update", command=self.update_track)
+        self.btn_update = tk.Button(window, text="update",activebackground='red', command=self.update_track)
         self.btn_update.grid(row=7, column=4, padx=5, pady=5)
 
         self.list_tracks_clicked()
@@ -79,12 +80,20 @@ class UpdateTracksViewer():
         key = int(self.input_txt.get()) - 1
         name = lib.get_name(key)
         if name is not None:
+            #delete old text
+            self.input_name.delete(0, tk.END)    
+            self.input_artist.delete(0, tk.END)
+            self.input_composer.delete(0, tk.END)
+            self.input_music_instrument.delete(0, tk.END)
+            self.input_link.delete(0, tk.END)
+            self.input_rating.delete(0, tk.END)
             self.current_key = key      
             artist = lib.get_artist(key)
             composer = lib.get_composer(key)
             music_instrument = lib.get_music_instrument(key)
             link = lib.get_link(key)
             rating = lib.get_rating(key)
+            #insert new text
             self.input_name.insert(0, name)        
             self.input_artist.insert(0, artist)
             self.input_composer.insert(0, composer)
@@ -92,7 +101,6 @@ class UpdateTracksViewer():
             self.input_link.insert(0, link)
             self.input_rating.insert(0, rating)
         
-           
         self.status_lbl.configure(text="View Track button was clicked!")
 
     def list_tracks_clicked(self):
@@ -125,5 +133,5 @@ class UpdateTracksViewer():
 if __name__ == "__main__":  
     window = tk.Tk()       
     fonts.configure()      
-    UpdateTracksViewer(window)    
+    UpdateTracks(window)    
     window.mainloop()      
