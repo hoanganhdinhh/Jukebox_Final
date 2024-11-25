@@ -6,12 +6,12 @@ from configure_tracks import ConfigureTracks
 from playlists import Playlist
 
 def view_tracks_clicked(): 
-    status_lbl.configure(text="View Tracks button was clicked!")   # Update the status label to indicate the View Tracks button was clicked
-    TrackViewer(tk.Toplevel(window))    # Open a new window for viewing tracks
+    status_lbl.configure(text="View Tracks button was clicked!")  
+    TrackViewer(tk.Toplevel(window))
 
 def play_tracks_clicked():  
-    status_lbl.configure(text="Play Track button was clicked!")   # Update the status label to indicate the Play Track button was clicked
-    PlayTrack(tk.Toplevel(window))    # Open a new window for playing tracks
+    status_lbl.configure(text="Play Track button was clicked!")
+    PlayTrack(tk.Toplevel(window))
 
 def playlists_clicked():
     status_lbl.configure(text="Playlists button was clicked!")

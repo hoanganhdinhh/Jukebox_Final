@@ -12,7 +12,7 @@ def set_text(text_area, content):
 
 class Playlist:
     def __init__(self, window):
-        window.geometry("1250x610")
+        window.geometry("1250x480")
         window.title("Playlist")
 
         list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
@@ -28,7 +28,7 @@ class Playlist:
         self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
         self.list_txt.bind("<Button-1>", self.track_clicked)
 
-        self.track_txt = tk.Text(window, width=24, height=6, wrap="none")
+        self.track_txt = tk.Text(window, width=24, height=5, wrap="none")
         self.track_txt.grid(row=1, column=3, padx=10, pady=10)
 
         self.listbox = tk.Listbox(window, width=30, height=9)
@@ -78,8 +78,7 @@ class Playlist:
             composer = lib.get_composer(key)
             music_instrument = lib.get_music_instrument(key)
             rating = lib.get_rating(key)
-            play_count = lib.get_play_count(key)
-            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}\nplay count: {play_count}"
+            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}"
             set_text(self.track_txt, track_details)
 
     def add_track_clicked(self):

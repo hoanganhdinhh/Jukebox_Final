@@ -1,31 +1,31 @@
-from library_item import LibraryItem  # Import the LibraryItem class from the library_item module
-from database import get_item, get_len, has # Import the get_item, get_len, and has functions from the database module
+from library_item import LibraryItem
+from database import get_item, get_len, has
 
-library = [] # Initialize an empty list to store library items
+library = []
 
-def update(): # Define the update function to refresh the library list
-    global library # Declare the library variable as global to modify the global list
-    library = [] # Reset the library list to empty
-    for key in range(get_len()): # Loop through each index from 0 to the length of the library
-        song = get_item(key) # Retrieve the song dictionary from the database using the current index
+def update():
+    global library
+    library = []
+    for key in range(get_len()):
+        song = get_item(key)
         library.append(LibraryItem(name = song["name"],artist = song["artist"], composer = song["composer"], music_instrument = song["music_instrument"], link = song["link"], rating = song["rating"]))
-        # Create a new LibraryItem object and add it to the library list
 
-def list_all():  # Define the list_all function to list all library items
-    update()     # Call the update function to refresh the library list
-    output = ""  # Initialize an empty string to store the output
-    for key in range(len(library)):  # Loop through each index in the library list
-        item = library[key]          # Get the LibraryItem object at the current index
-        output += f"{key + 1} {item.info()}\n"  # Append the item's info to the output string with a line break
-    return output  # Return the complete output string
+
+def list_all():
+    update()
+    output = ""
+    for key in range(len(library)):
+        item = library[key]
+        output += f"{key + 1} {item.info()}\n"
+    return output
 
 def get_length_from_name(name):
-    update()  # Refresh the library list
-    count = 0  # Initialize a counter to zero
-    for item in library:  # Loop through each item in the library
-        if item.name == name:  # Check if the item's name matches the given name
-            count += 1  # Increment the counter if there's a match
-    return count  # Return the total count
+    update()
+    count = 0
+    for item in library:
+        if item.name == name:
+            count += 1
+    return count
 
 def get_name(key):
     if not has(key): return None
