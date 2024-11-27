@@ -1,6 +1,6 @@
 import tkinter as tk
 import font_manager as fonts
-from playlist_database import load_playlist, add_track, clear_playlist, get_link
+from playlist_database import load_playlist, add_track, clear_playlist, get_file_path
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import webbrowser , pygame, PIL
@@ -73,22 +73,22 @@ class Playlist:
         play_music_btn.grid(row=3, column=0, padx=10, pady=10)
 
         previous_track_btn = tk.Button(window, text="⏮️", command=self.previous_track_clicked)
-        previous_track_btn.grid(row=4, column=2, padx=10, pady=10)
+        previous_track_btn.grid(row=4, column=0, padx=10, pady=10)
 
         play_pause_music_btn = tk.Button(window, text="⏯️", command=self.play_pause_clicked)
-        play_pause_music_btn.grid(row=4, column=4, padx=10, pady=10)
+        play_pause_music_btn.grid(row=4, column=1, padx=10, pady=10)
 
         next_track_btn = tk.Button(window, text="⏭️", command=self.next_track_clicked)
-        next_track_btn.grid(row=4, column=7, padx=10, pady=10)
+        next_track_btn.grid(row=4, column=2, padx=10, pady=10)
 
         stop_btn = tk.Button(window, text="⏹️", command=self.stop_clicked)
         stop_btn.grid(row=4, column=3, padx=10, pady=10)
 
         volume_up_btn = tk.Button(window, text="🔊", command=self.volume_up_clicked)
-        volume_up_btn.grid(row=4, column=5, padx=10, pady=10)
+        volume_up_btn.grid(row=3, column=4, padx=10, pady=10)
 
         volume_down_btn = tk.Button(window, text="🔉", command=self.volume_down_clicked)
-        volume_down_btn.grid(row=4, column=6, padx=10, pady=10)
+        volume_down_btn.grid(row=4, column=4, padx=10, pady=10)
 
         freq = 44100    # audio CD quality
         bitsize = -16   # unsigned 16 bit
@@ -219,8 +219,8 @@ class Playlist:
         key = self.current_key
         name = lib.get_name(key)
         if name is not None and name not in self.listbox.get(0, tk.END):
-            link = lib.get_link(key)
-            add_track(name, link)
+            file_path = lib.get_file_path(key)
+            add_track(name, file_path)
             self.load_playlist_clicked()
             self.status_lbl.configure(text="Track added to playlist!")
         else:
@@ -234,14 +234,16 @@ class Playlist:
     def play_track_in_playlist(self):
         selection = self.listbox.curselection()
         name = self.listbox.get(selection)
-        link = get_link(name)
-        if link is None:
-            self.status_lbl.configure(text="No link found for this track")
-        elif link.startswith("https://www.youtube.com/"):
-            webbrowser.open(link)
-            self.status_lbl.configure(text="Play Track button was clicked!")
+        file_path = get_file_path(name)
+        if file_path is None:
+            self.status_lbl.configure(text="No file found for this track")
         else:
-            self.status_lbl.configure(text="Invalid link for this track")
+            music_file = file_path
+            pygame.mixer.music.load(music_file)
+            pygame.mixer.music.set_volume(0.6)
+            pygame.mixer.music.play()
+            self.status_lbl.configure(text="Music is playing")
+        
         
 
 if __name__ == "__main__":  # only runs when this file is run as a standalone

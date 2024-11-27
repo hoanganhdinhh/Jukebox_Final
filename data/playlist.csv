@@ -1,6 +1,5 @@
 name,file_path
-Shape of You,https://www.youtube.com/watch?v=JGwWNGJdvx8
-Stairway to Heaven,https://www.youtube.com/watch?v=QkF3oxziUI4
-Someone Like You,https://www.youtube.com/watch?v=hLQl3WQQoQ0
-Highway to Hell,https://www.youtube.com/watch?v=l482T0yNkeo
-Another Brick in the Wall,https://www.youtube.com/watch?v=YR5ApYxkU-U
+Someone Like You,./songs/05.mp3
+Another Brick in the Wall,./songs/01.mp3
+Highway to Hell,./songs/03.mp3
+Shape of You,./songs/04.mp3

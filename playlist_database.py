@@ -19,7 +19,7 @@ def add_track(track,file_path):
         writer = csv.writer(file)
         writer.writerow([track,file_path])
 
-def get_link(track_name):
+def get_file_path(track_name):
     with open('./data/playlist.csv', mode='r') as file:
         reader = csv.reader(file)
         next(reader)  # Skip the header
