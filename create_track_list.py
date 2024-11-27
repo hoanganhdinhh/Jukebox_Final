@@ -3,6 +3,7 @@ import track_library as lib
 import tkinter.scrolledtext as tkst
 import font_manager as fonts
 from songs_database import set_item, get_len
+from tkinter import filedialog
 
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)
@@ -37,17 +38,23 @@ class CreateTrackList:
         self.input_composer = tk.Entry(window, width=27)
         self.input_composer.grid(row=3, column=4, padx=5, pady=5)
 
-        self.music_instrument_lb = tk.Label(window, text="music instrument:")
-        self.music_instrument_lb.grid(row=4, column=3, padx=10, pady=10)
+        self.image_path_lb = tk.Label(window, text="image path:")
+        self.image_path_lb.grid(row=4, column=3, padx=10, pady=10)
 
-        self.input_music_instrument = tk.Entry(window, width=27)
-        self.input_music_instrument.grid(row=4, column=4, padx=5, pady=5)
+        self.input_image_path = tk.Entry(window, width=27)
+        self.input_image_path.grid(row=4, column=4, padx=5, pady=5)
 
-        self.link_lb = tk.Label(window, text="youtube link:")
-        self.link_lb.grid(row=5, column=3, padx=10, pady=10)
+        browse_image_path=tk.Button(window, text="Browse",font=40,command=self.browse_image_path)
+        browse_image_path.grid(row=4,column=5)
 
-        self.input_link = tk.Entry(window, width=27)
-        self.input_link.grid(row=5, column=4, padx=5, pady=5)
+        self.file_path_lb = tk.Label(window, text="file path:")
+        self.file_path_lb.grid(row=5, column=3, padx=10, pady=10)
+
+        self.input_file_path = tk.Entry(window, width=27)
+        self.input_file_path.grid(row=5, column=4, padx=5, pady=5)
+
+        browse_image_path=tk.Button(window, text="Browse",font=40,command=self.browse_file_path)
+        browse_image_path.grid(row=5,column=5)
 
         self.rating_lb = tk.Label(window, text="rating:")
         self.rating_lb.grid(row=6, column=3, padx=10, pady=10)
@@ -68,20 +75,33 @@ class CreateTrackList:
         set_text(self.list_txt, track_list)
         self.status_lbl.configure(text="List Tracks button was clicked!")
 
+    def browse_image_path(self):
+        self.input_image_path.delete(0, tk.END)
+        filename = filedialog.askopenfilename(filetypes=(("mp3 files","*.mp3"),("All files","*.*")))
+        new_path = "./" + "/".join(filename.replace("\\", "/").split("/")[-2:])
+        self.input_image_path.insert(tk.END, new_path)
+
+    def browse_file_path(self):
+        self.input_image_path.delete(0, tk.END)
+        filename = filedialog.askopenfilename(filetypes=(("image files","*.jpg"),("All files","*.*")))
+        new_path = "./" + "/".join(filename.replace("\\", "/").split("/")[-2:])
+        self.input_file_path.insert(tk.END, new_path)
+
     def create_track(self):
         name = self.input_name.get()
         artist = self.input_artist.get()
         composer = self.input_composer.get()
-        music_instrument = self.input_music_instrument.get()
-        link = self.input_link.get()
+        image_path = self.input_image_path.get()
+        file_path = self.input_file_path.get()
         rating = self.input_rating.get()
         new = {}
         new["name"] = name
         new["artist"] = artist
         new["composer"] = composer
-        new["music_instrument"] = music_instrument
-        new["link"] = link
+        new["image_path"] = image_path
+        new["file_path"] = file_path
         new["rating"] = int(rating)
+        new["play_count"] = 0
         set_item(get_len(),new)
         track_list = lib.list_all()
         set_text(self.list_txt, track_list)

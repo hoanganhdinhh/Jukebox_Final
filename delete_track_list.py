@@ -41,7 +41,7 @@ class DeleteTrackList:
 
         self.list_tracks_clicked()
         self.current_key = None
-    
+
     def view_tracks_clicked(self):
         key = int(self.input_num.get()) - 1
         self.current_key = key

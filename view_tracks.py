@@ -42,10 +42,9 @@ class TrackViewer():
         if name is not None:
             artist = lib.get_artist(key)
             composer = lib.get_composer(key)
-            music_instrument = lib.get_music_instrument(key)
             rating = lib.get_rating(key)
             play_count = lib.get_play_count(key)
-            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}\nplays: {play_count}" 
+            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nrating: {rating}\nplays: {play_count}" 
             set_text(self.track_txt, track_details)
         else:
             set_text(self.track_txt, f"Track {key} not found")

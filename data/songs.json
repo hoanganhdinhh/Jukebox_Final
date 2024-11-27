@@ -3,48 +3,54 @@
         "name": "Another Brick in the Wall",
         "artist": "Pink Floyd",
         "composer": "Roger Waters",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=YR5ApYxkU-U",
-        "rating": 1
+        "image_path": "./images/01.jpg",
+        "file_path": "./songs/01.mp3",
+        "rating": 1,
+        "play_count": 0
     },
     {
         "name": "Stayin' Alive",
         "artist": "Bee Gees",
         "composer": "The Bee Gees",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=fNFzfwLM72c",
-        "rating": 5
+        "image_path": "./images/02.jpg",
+        "file_path": "./songs/02.mp3",
+        "rating": 5,
+        "play_count": 0
     },
     {
         "name": "Highway to Hell",
         "artist": "AC/DC",
         "composer": "Bon Scott",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=l482T0yNkeo",
-        "rating": 2
+        "image_path": "./images/03.jpg",
+        "file_path": "./songs/03.mp3",
+        "rating": 2,
+        "play_count": 0
     },
     {
         "name": "Shape of You",
         "artist": "Ed Sheeran",
         "composer": "Lyle Haylett",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
-        "rating": 4
+        "image_path": "./images/04.jpg",
+        "file_path": "./songs/04.mp3",
+        "rating": 4,
+        "play_count": 0
     },
     {
         "name": "Someone Like You",
         "artist": "Adele",
         "composer": "Adele and Dan Wilson",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=hLQl3WQQoQ0",
-        "rating": 3
+        "image_path": "./images/05.jpg",
+        "file_path": "./songs/05.mp3",
+        "rating": 3,
+        "play_count": 0
     },
     {
         "name": "Stairway to Heaven",
         "artist": "Led Zeppelin",
         "composer": "Jimmy Page, Robert Plant",
-        "music_instrument": "none",
-        "link": "https://www.youtube.com/watch?v=QkF3oxziUI4",
-        "rating": 2
+        "image_path": "./images/06.jpg",
+        "file_path": "./songs/06.mp3",
+        "rating": 2,
+        "play_count": 0
     }
 ]

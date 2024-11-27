@@ -8,7 +8,7 @@ def update():
     library = []
     for key in range(get_len()):
         song = get_item(key)
-        library.append(LibraryItem(name = song["name"],artist = song["artist"], composer = song["composer"], music_instrument = song["music_instrument"], link = song["link"], rating = song["rating"]))
+        library.append(LibraryItem(name = song["name"],artist = song["artist"], composer = song["composer"], image_path = song["image_path"], file_path = song["file_path"], rating = song["rating"], play_count = song["play_count"]))
 
 
 def list_all():
@@ -19,6 +19,7 @@ def list_all():
         output += f"{key + 1} {item.info()}\n"
     return output
 
+
 def get_name(key):
     if not has(key): return None
     try:
@@ -27,6 +28,7 @@ def get_name(key):
     except KeyError:
         return None
 
+
 def get_artist(key):
     if not has(key): return None
     try:
@@ -34,7 +36,8 @@ def get_artist(key):
         return item.artist
     except KeyError:
         return None
-    
+
+
 def get_composer(key):
     if not has(key): return None
     try:
@@ -42,22 +45,25 @@ def get_composer(key):
         return item.composer
     except KeyError:
         return None
-    
-def get_music_instrument(key):
+
+
+def get_image_path(key):
     if not has(key): return None
     try:
         item = library[key]
-        return item.music_instrument
+        return item.image_path
     except KeyError:
         return None
 
-def get_link(key):
+
+def get_file_path(key):
     if not has(key): return None
     try:
         item = library[key]
-        return item.link
+        return item.file_path
     except KeyError:
         return None
+
 
 def get_rating(key):
     if not has(key): return None
@@ -84,7 +90,7 @@ def get_play_count(key):
         return item.play_count
     except KeyError:
         return -1
-
+    
 
 def increment_play_count(key):
     if not has(key): return None

@@ -12,12 +12,12 @@ def load_playlist():
 def clear_playlist():
     with open('./data/playlist.csv', mode='w', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(['name','link','play_count'])
+        writer.writerow(['name','file_path'])
 
-def add_track(track,link):
+def add_track(track,file_path):
     with open('./data/playlist.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([track,link])
+        writer.writerow([track,file_path])
 
 def get_link(track_name):
     with open('./data/playlist.csv', mode='r') as file:
