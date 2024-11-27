@@ -4,6 +4,7 @@ from playlist_database import load_playlist, add_track, clear_playlist, get_link
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import webbrowser
+import pygame
 
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)
@@ -32,7 +33,7 @@ class Playlist:
         self.track_txt = tk.Text(window, width=24, height=5, wrap="none")
         self.track_txt.grid(row=1, column=3, padx=10, pady=10)
 
-        self.listbox = tk.Listbox(window, width=30, height=9)
+        self.listbox = tk.Listbox(window, width=23, height=9)
         scrollbar = tk.Scrollbar(window)
         scrollbar.grid(row=1, column=7, sticky='ns')
 
@@ -52,14 +53,98 @@ class Playlist:
         self.status_lbl = tk.Label(window, text="")
         self.status_lbl.grid(row=2, column=0, padx=10, pady=10)
 
+        #play music func btn
+        play_music_btn = tk.Button(window, text="Play Music", command=self.play_music_clicked)
+        play_music_btn.grid(row=3, column=3, padx=10, pady=10)
+
+        previous_track_btn = tk.Button(window, text="⏮️", command=self.previous_track_clicked)
+        previous_track_btn.grid(row=4, column=2, padx=10, pady=10)
+
+        play_pause_music_btn = tk.Button(window, text="⏯️", command=self.play_pause_clicked)
+        play_pause_music_btn.grid(row=4, column=4, padx=10, pady=10)
+
+        next_track_btn = tk.Button(window, text="⏭️", command=self.next_track_clicked)
+        next_track_btn.grid(row=4, column=7, padx=10, pady=10)
+
+        stop_btn = tk.Button(window, text="⏹️", command=self.stop_clicked)
+        stop_btn.grid(row=4, column=3, padx=10, pady=10)
+
+        volume_up_btn = tk.Button(window, text="🔊", command=self.volume_up_clicked)
+        volume_up_btn.grid(row=4, column=5, padx=10, pady=10)
+
+        volume_down_btn = tk.Button(window, text="🔉", command=self.volume_down_clicked)
+        volume_down_btn.grid(row=4, column=6, padx=10, pady=10)
+
+        freq = 44100    # audio CD quality
+        bitsize = -16   # unsigned 16 bit
+        channels = 2    # 1 is mono, 2 is stereo
+        buffer = 1024    # number of samples
+        pygame.mixer.init(freq, bitsize, channels, buffer)
+        
         self.list_tracks_clicked()
         self.load_playlist_clicked()
-        
+
+    #play music function
+    def play_music_clicked(self):
+        music_file = "./songs/test.mid"
+        pygame.mixer.music.load(music_file)
+        pygame.mixer.music.set_volume(0.6)
+        pygame.mixer.music.play()
+        self.status_lbl.configure(text="Music is playing")
+    
+    def volume_up_clicked(self):
+        volume = pygame.mixer.music.get_volume()
+        pygame.mixer.music.set_volume(volume + 0.1)
+        self.status_lbl.configure(text=f"Volume now is {pygame.mixer.music.get_volume()}")
+
+    def volume_down_clicked(self):
+        volume = pygame.mixer.music.get_volume()
+        pygame.mixer.music.set_volume(volume - 0.1)
+        self.status_lbl.configure(text=f"Volume now is {pygame.mixer.music.get_volume()}")
+
+    def stop_clicked(self):
+        pygame.mixer.music.stop()
+        self.status_lbl.configure(text="Music stopped")
+
+    def next_track_clicked(self):
+        pygame.mixer.music.stop()
+        pygame.mixer.music.play()
+        self.status_lbl.configure(text="Next track")
+
+    def previous_track_clicked(self):
+        pygame.mixer.music.rewind()
+        pygame.mixer.music.play()
+        self.status_lbl.configure(text="Previous track")
+
+    def play_pause_clicked(self):
+        if pygame.mixer.music.get_busy():
+            pygame.mixer.music.pause()
+            self.status_lbl.configure(text="Music paused")
+        else:
+            pygame.mixer.music.unpause()
+            self.status_lbl.configure(text="Music unpaused")
+
     def load_playlist_clicked(self):
         self.listbox.delete(0, tk.END)
         tracks = load_playlist()
         for track in tracks:
             self.listbox.insert(tk.END, track)
+
+    #search for name track
+    def search_track_clicked(self):
+        name = self.input_name.get()
+        key = lib.search_name(name)
+        if key is not None:
+            self.current_key = key
+            artist = lib.get_artist(key)
+            composer = lib.get_composer(key)
+            music_instrument = lib.get_music_instrument(key)
+            rating = lib.get_rating(key)
+            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nmusic instrument: {music_instrument}\nrating: {rating}"
+            set_text(self.track_txt, track_details)
+        else:
+            set_text(self.track_txt, f"Track {name} not found")
+        self.status_lbl.configure(text="Search Track button was clicked!")
 
     def list_tracks_clicked(self):
         track_list = lib.list_all()

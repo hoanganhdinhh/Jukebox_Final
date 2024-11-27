@@ -9,15 +9,15 @@ def load_playlist():
             tracks.append(row[0])
     return tracks
 
+def clear_playlist():
+    with open('./data/playlist.csv', mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['name','link','play_count'])
+
 def add_track(track,link):
     with open('./data/playlist.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([track,link])
-
-def clear_playlist():
-    with open('./data/playlist.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(['name','link'])
 
 def get_link(track_name):
     with open('./data/playlist.csv', mode='r') as file:

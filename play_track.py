@@ -34,6 +34,8 @@ class PlayTrack:
         play_btn = tk.Button(window, text="Play",activebackground='red', command=lambda: self.play_track())
         play_btn.grid(row=2, column=3, padx= 10, pady= 10) 
         
+        self.current_key = None  # Initialize current_key
+
         self.list_tracks_clicked()
 
     def list_tracks_clicked(self):
@@ -61,6 +63,9 @@ class PlayTrack:
 
     def play_track(self):
         key = self.current_key
+        if key is None:
+            self.status_lbl.configure(text="No track selected")
+            return
         link = lib.get_link(key)
         if link is None:
             self.status_lbl.configure(text="No link found for this track")

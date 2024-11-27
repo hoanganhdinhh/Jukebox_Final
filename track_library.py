@@ -19,14 +19,6 @@ def list_all():
         output += f"{key + 1} {item.info()}\n"
     return output
 
-def get_length_from_name(name):
-    update()
-    count = 0
-    for item in library:
-        if item.name == name:
-            count += 1
-    return count
-
 def get_name(key):
     if not has(key): return None
     try:
@@ -34,7 +26,6 @@ def get_name(key):
         return item.name
     except KeyError:
         return None
-
 
 def get_artist(key):
     if not has(key): return None
