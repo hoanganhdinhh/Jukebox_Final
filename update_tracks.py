@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import font_manager as fonts
-from songs_database import get_item, set_item
+from database.songs_database import get_item, set_item
 from tkinter import filedialog
 
 def set_text(text_area, content):

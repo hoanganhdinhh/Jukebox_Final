@@ -1,5 +1,5 @@
 from library_item import LibraryItem
-from songs_database import get_item, get_len, has
+from database.songs_database import get_item, get_len, has
 
 library = []
 
