@@ -182,7 +182,7 @@ class Playlist:
         self.set_current_track(line)
 
     def set_current_track(self, track):
-        self.current_key = key = int(track.split()[0]) - 1
+        key = self.current_key = int(track.split()[0]) - 1
         name = lib.get_name(key)
         if name is not None:
             artist = lib.get_artist(key)
