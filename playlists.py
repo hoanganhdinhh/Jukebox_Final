@@ -3,7 +3,7 @@ import font_manager as fonts
 from playlist_database import load_playlist, add_track, clear_playlist, get_file_path
 import tkinter.scrolledtext as tkst
 import track_library as lib
-import webbrowser , pygame, PIL
+import pygame
 from PIL import Image, ImageTk
 
 def set_text(text_area, content):
