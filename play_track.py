@@ -15,7 +15,7 @@ def set_text(text_area, content):
 class PlayTrack:
     def __init__(self, window):
         self.window = window
-        window.geometry("1250x800")
+        window.geometry("1500x850")
         window.title("Playlist")
         window.configure(bg="light blue")
 
@@ -58,14 +58,11 @@ class PlayTrack:
         reset_btn.grid(row=2, column=5, padx= 10, pady= 10)
 
         #search box
-        self.input_search_name = tk.Entry(self.window)
-        self.input_search_name.grid(row=2, column=1, padx=10, pady=10)
+        self.input_search_name = tk.Entry(self.window, width=27)
+        self.input_search_name.grid(row=2, column=0,sticky="E", padx=10, pady=10)
 
         search_btn = tk.Button(self.window, text="Search", command=self.search_func)
-        search_btn.grid(row=2, column=2, padx=10, pady=10)
-
-        self.status_lbl = tk.Label(window, text="")
-        self.status_lbl.grid(row=2, column=0, padx=10, pady=10)
+        search_btn.grid(row=2, column=1,sticky="W", padx=10, pady=10)
 
         #Album listbox
         list_albums_btn = tk.Button(window, text="List Albums", activebackground='red', command=self.list_albums_clicked)
@@ -100,6 +97,9 @@ class PlayTrack:
 
         volume_up_btn = tk.Button(window, text="🔊", command=self.volume_up_clicked)
         volume_up_btn.grid(row=4, column=5, padx=10, pady=10)
+
+        self.status_lbl = tk.Label(window, text="")
+        self.status_lbl.grid(row=5, column=0, padx=10, pady=10)
 
         freq = 44100    # audio CD quality
         bitsize = -16   # unsigned 16 bit
