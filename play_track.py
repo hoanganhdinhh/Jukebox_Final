@@ -207,18 +207,8 @@ class PlayTrack:
         if search_name in track.lower()]
         set_text(self.list_txt, '\n'.join(result))
         if not result:
-            self.status_lbl.configure(text="No track found")
-    #search function
-    # def search_name(self):
-    #     self.listbox.delete(0, tk.END)
-    #     search_name = self.input_search_name.get().lower()
-    #     for key in range(0,get_len()):
-    #         name = lib.get_name(key)
-    #         if name.startswith(search_name):
-    #             tracks = lib.list_all()
-    #             for track in tracks:
-    #                 self.listbox.insert(tk.END, track)
-            
+            no_track = " No track found"
+            set_text(self.list_txt, no_track)
 
     #playlist function
     def add_track_clicked(self):
