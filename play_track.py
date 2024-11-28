@@ -1,7 +1,7 @@
 import tkinter as tk
 import font_manager as fonts
-from playlist_database import load_playlist, add_track, clear_playlist, get_file_path
-import albums_database as albums
+from database.playlist_database import load_playlist, add_track, clear_playlist, get_file_path
+import database.albums_database as albums
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import pygame
