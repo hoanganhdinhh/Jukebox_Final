@@ -5,7 +5,7 @@ from play_track import PlayTrack
 from create_track_list import CreateTrackList
 from update_tracks import UpdateTracks
 from delete_track_list import DeleteTrackList
-from playlists import Playlist
+from play_track import Playlist
 
 def view_tracks_clicked(): 
     status_lbl.configure(text="View Tracks button was clicked!")  
