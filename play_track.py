@@ -1,6 +1,7 @@
 import tkinter as tk
 import font_manager as fonts
 from playlist_database import load_playlist, add_track, clear_playlist, get_file_path
+import albums_database as albums
 import tkinter.scrolledtext as tkst
 import track_library as lib
 import pygame
@@ -36,7 +37,7 @@ class PlayTrack:
 
         #show image
         self.image_label = tk.Label(window)
-        self.image_label.grid(row=3,column=1, sticky="NW",padx=10, pady=90)
+        self.image_label.grid(row=3,column=1,padx=10, pady=90)
                               
         #playlist listbox
         self.listbox = tk.Listbox(window, width=23, height=9)
@@ -46,15 +47,6 @@ class PlayTrack:
         self.listbox.config(yscrollcommand=scrollbar.set)
         scrollbar.config(command=self.listbox.yview)
         self.listbox.grid(row=1, column=4, columnspan=4, padx=10, pady=10)
-
-        #Album listbox
-        self.album_listbox = tk.Listbox(window, width=23, height=9)
-        scrollbar = tk.Scrollbar(window)
-        scrollbar.grid(row=1, column=11, sticky='ns')
-
-        self.album_listbox.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.listbox.yview)
-        self.album_listbox.grid(row=1, column=8, columnspan=3, padx=10, pady=10)
 
         add_btn = tk.Button(window, text="Add to Playlist", activebackground='red', command=self.add_track_clicked)
         add_btn.grid(row=2, column=3, padx= 10, pady= 10)
@@ -74,6 +66,18 @@ class PlayTrack:
 
         self.status_lbl = tk.Label(window, text="")
         self.status_lbl.grid(row=2, column=0, padx=10, pady=10)
+
+        #Album listbox
+        list_albums_btn = tk.Button(window, text="List Albums", activebackground='red', command=self.list_albums_clicked)
+        list_albums_btn.grid(row=0, column=8, padx=10, pady=10)
+
+        self.albums_listbox = tk.Listbox(window, width=23, height=9)
+        scrollbar = tk.Scrollbar(window)
+        scrollbar.grid(row=1, column=11, sticky='ns')
+
+        self.albums_listbox.config(yscrollcommand=scrollbar.set)
+        scrollbar.config(command=self.listbox.yview)
+        self.albums_listbox.grid(row=1, column=8, columnspan=3, padx=10, pady=10)
 
         #play music func buttons
         play_music_btn = tk.Button(window, text="Play Track", command=self.play_music_clicked)
@@ -130,26 +134,34 @@ class PlayTrack:
         self.status_lbl.configure(text="Music stopped")
 
     def next_track_clicked(self):
-        key = self.current_key + 1
-        music_file = lib.get_file_path(key)
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load(music_file)
-        volume = pygame.mixer.music.get_volume()
-        pygame.mixer.music.set_volume(volume)
-        pygame.mixer.music.play()
-        self.show_image(key)
-        self.status_lbl.configure(text="Next track")
+        key = int(self.current_key)
+        music_file = lib.get_file_path(key + 1)
+        if music_file is not None:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load(music_file)
+            volume = pygame.mixer.music.get_volume()
+            pygame.mixer.music.set_volume(volume)
+            pygame.mixer.music.play()
+            self.current_key = key + 1
+            self.show_image(self.current_key)
+            self.status_lbl.configure(text="Next track")
+        else:
+            self.status_lbl.configure(text="No next track found")
 
     def previous_track_clicked(self):
         key = int(self.current_key)
-        music_file = lib.get_file_path(key)
-        pygame.mixer.music.stop()
-        pygame.mixer.music.load(music_file)
-        volume = pygame.mixer.music.get_volume()
-        pygame.mixer.music.set_volume(volume - 0.1)
-        pygame.mixer.music.play()
-        self.show_image(key)
-        self.status_lbl.configure(text="Previous track")
+        music_file = lib.get_file_path(key - 1)
+        if music_file is not None:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load(music_file)
+            volume = pygame.mixer.music.get_volume()
+            pygame.mixer.music.set_volume(volume)
+            pygame.mixer.music.play()
+            self.current_key = key - 1
+            self.show_image(self.current_key)
+            self.status_lbl.configure(text="Next track")
+        else:
+            self.status_lbl.configure(text="No next track found")
 
     def play_pause_clicked(self):
         if pygame.mixer.music.get_busy():
@@ -199,7 +211,7 @@ class PlayTrack:
             track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nrating: {rating}\nplay count: {play_count}"
             set_text(self.track_txt, track_details)
             self.show_image(key)
-
+    
     def search_func(self):
         self.list_txt.delete(1.0, tk.END)
         search_name = self.input_search_name.get().lower()
@@ -239,8 +251,13 @@ class PlayTrack:
             pygame.mixer.music.set_volume(0.6)
             pygame.mixer.music.play()
             self.status_lbl.configure(text="Music is playing")
-        
-        
+
+    #album listbox    
+    def list_albums_clicked(self):
+        self.albums_listbox.delete(0, tk.END)
+        album_list = "\n".join(albums.list_albums())
+        self.albums_listbox.insert(tk.END, album_list)
+        self.status_lbl.configure(text="List Albums button was clicked!")
 
 if __name__ == "__main__":  # only runs when this file is run as a standalone
     window = tk.Tk()        # create a TK object

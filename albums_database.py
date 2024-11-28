@@ -8,6 +8,21 @@ def load_albums():
     except FileNotFoundError:
         return {}
 
+def list_albums():
+    albums = load_albums()
+    output = ""
+    for album_name in albums.keys():
+        output += f"{album_name}\n"
+    return output
+
+def list_songs(album_name):
+    albums = load_albums()
+    if album_name in albums:
+        output = f"Album: {album_name}\n"
+        for song in albums[album_name]["songs"]:
+            output += f"{song}\n"
+        return output
+    
 # Save the albums data to the JSON file
 def save_albums(file_path, albums):
     with open(file_path, 'w') as file:
