@@ -188,7 +188,8 @@ class Playlist:
             artist = lib.get_artist(key)
             composer = lib.get_composer(key)
             rating = lib.get_rating(key)
-            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nrating: {rating}"
+            play_count = lib.get_play_count(key)
+            track_details = f"song: {name}\nartist: {artist}\ncomposer: {composer}\nrating: {rating}\nplay count: {play_count}"
             set_text(self.track_txt, track_details)
             self.show_image(key)
 

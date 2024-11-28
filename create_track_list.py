@@ -82,7 +82,7 @@ class CreateTrackList:
         self.input_image_path.insert(tk.END, new_path)
 
     def browse_file_path(self):
-        self.input_image_path.delete(0, tk.END)
+        self.input_file_path.delete(0, tk.END)
         filename = filedialog.askopenfilename(filetypes=(("image files","*.jpg"),("All files","*.*")))
         new_path = "./" + "/".join(filename.replace("\\", "/").split("/")[-2:])
         self.input_file_path.insert(tk.END, new_path)

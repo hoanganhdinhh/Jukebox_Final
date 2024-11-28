@@ -18,17 +18,12 @@ class UpdateTracks():
         list_tracks_btn = tk.Button(window, text="List All Tracks",activebackground='red', command=self.list_tracks_clicked)
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
-        enter_lbl = tk.Label(window, text="Enter Track Number")
+        enter_lbl = tk.Label(window, text="Select a track by clicking on it")
         enter_lbl.grid(row=0, column=2, padx=10, pady=10)
-
-        self.input_txt = tk.Entry(window, width=3)
-        self.input_txt.grid(row=0, column=3, padx=10, pady=10)
-
-        check_track_btn = tk.Button(window, text="Edit Track",activebackground='red', command=self.edit_tracks_clicked)
-        check_track_btn.grid(row=0, column=4, padx=10, pady=10)
 
         self.list_txt = tkst.ScrolledText(window, width=55, height=12, wrap="none")
         self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
+        self.list_txt.bind("<Button-1>", self.track_clicked)
 
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
         self.status_lbl.grid(row=3, column=0, columnspan=4, sticky="W", padx=10, pady=10)
@@ -81,6 +76,16 @@ class UpdateTracks():
         self.list_tracks_clicked()
         self.current_key = None
 
+    def track_clicked(self, event):
+        index = self.list_txt.index("@%s,%s" % (event.x, event.y))
+        line = self.list_txt.get(index + " linestart", index + " lineend")
+        self.set_current_track(line)
+        self.edit_tracks_clicked()
+        self.status_lbl.configure(text=f"Current track is: {line}")
+
+    def set_current_track(self, track):
+        self.current_key = key = int(track.split()[0]) - 1
+
     def browse_image_path(self):
         self.input_image_path.delete(0, tk.END)
         filename = filedialog.askopenfilename(filetypes=(("mp3 files","*.mp3"),("All files","*.*")))
@@ -88,34 +93,34 @@ class UpdateTracks():
         self.input_image_path.insert(tk.END, new_path)
 
     def browse_file_path(self):
-        self.input_image_path.delete(0, tk.END)
+        self.input_file_path.delete(0, tk.END)
         filename = filedialog.askopenfilename(filetypes=(("image files","*.jpg"),("All files","*.*")))
         new_path = "./" + "/".join(filename.replace("\\", "/").split("/")[-2:])
         self.input_file_path.insert(tk.END, new_path)
 
     def edit_tracks_clicked(self):
-        key = int(self.input_txt.get()) - 1
+        key = self.current_key
         name = lib.get_name(key)
         if name is not None:
             #delete old text
             self.input_name.delete(0, tk.END)    
             self.input_artist.delete(0, tk.END)
             self.input_composer.delete(0, tk.END)
-            self.input_music_instrument.delete(0, tk.END)
-            self.input_link.delete(0, tk.END)
+            self.input_image_path.delete(0, tk.END)
+            self.input_file_path.delete(0, tk.END)
             self.input_rating.delete(0, tk.END)
             self.current_key = key      
             artist = lib.get_artist(key)
             composer = lib.get_composer(key)
-            music_instrument = lib.get_music_instrument(key)
-            link = lib.get_link(key)
+            image_path = lib.get_image_path(key)
+            file_path = lib.get_file_path(key)
             rating = lib.get_rating(key)
             #insert new text
             self.input_name.insert(0, name)        
             self.input_artist.insert(0, artist)
             self.input_composer.insert(0, composer)
-            self.input_music_instrument.insert(0, music_instrument)
-            self.input_link.insert(0, link)
+            self.input_image_path.insert(0, image_path)
+            self.input_file_path.insert(0, file_path)
             self.input_rating.insert(0, rating)
         
         self.status_lbl.configure(text="View Track button was clicked!")
@@ -130,16 +135,20 @@ class UpdateTracks():
             name = self.input_name.get()
             artist = self.input_artist.get()
             composer = self.input_composer.get()
-            image_path = self.image_path.get()
+            image_path = self.input_image_path.get()
             file_path = self.input_file_path.get()
             rating = self.input_rating.get()
             new = get_item(self.current_key)
             new["name"] = name
             new["artist"] = artist
             new["composer"] = composer
-            new["music_instrument"] = music_instrument
-            new["link"] = link
-            new["rating"] = int(rating)
+            new["image_path"] = image_path
+            new["file_path"] = file_path
+            try:
+                new["rating"] = int(rating)
+            except ValueError:
+                self.status_lbl.configure(text="Rating must be a number!")
+                return
             set_item(self.current_key , new)
             track_list = lib.list_all()
             set_text(self.list_txt, track_list)
