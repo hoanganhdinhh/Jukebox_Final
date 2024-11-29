@@ -6,6 +6,8 @@ import tkinter.scrolledtext as tkst
 import track_library as lib
 import pygame
 from PIL import Image, ImageTk
+from create_track_list import CreateTrackList
+from update_tracks import UpdateTracks
 
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)
@@ -23,18 +25,26 @@ class PlayTrack:
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
         header_lbl = tk.Label(window, text="Select a track by clicking on it")
-        header_lbl.grid(row=0, column=1, padx=10, pady=10)
+        header_lbl.grid(row=2, column=0, padx=10, pady=10)
 
         list_playlist_btn = tk.Button(window, text="List Playlist",activebackground='red', command=self.load_playlist_clicked)
         list_playlist_btn.grid(row=0, column=4, padx=10, pady=10)
         
-        self.list_txt = tkst.ScrolledText(window, width=65, height=12, wrap="none")
+        self.list_txt = tkst.ScrolledText(window, width=68, height=12, wrap="none")
         self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
         self.list_txt.bind("<Button-1>", self.track_clicked)
 
         self.track_txt = tk.Text(window, width=24, height=5, wrap="none")
         self.track_txt.grid(row=1, column=3, padx=10, pady=10)
 
+        #create track button
+        create_track_btn = tk.Button(window, text="Create Track", activebackground='red', command=self.create_track_clicked)
+        create_track_btn.grid(row=2, column=1, padx=10, pady=10)
+
+        #update track button
+        update_track_btn = tk.Button(window, text="Update Track", activebackground='red', command=self.update_track_clicked)
+        update_track_btn.grid(row=2, column=2, padx=10, pady=10)
+        
         #show image
         self.image_label = tk.Label(window)
         self.image_label.grid(row=3,column=1,padx=10, pady=90)
@@ -58,11 +68,11 @@ class PlayTrack:
         reset_btn.grid(row=2, column=5, padx= 10, pady= 10)
 
         #search box
-        self.input_search_name = tk.Entry(self.window, width=27)
-        self.input_search_name.grid(row=2, column=0,sticky="E", padx=10, pady=10)
+        self.input_search_name = tk.Entry(self.window, width=30)
+        self.input_search_name.grid(row=0, column=1, padx=10, pady=10)
 
         search_btn = tk.Button(self.window, text="Search", command=self.search_func)
-        search_btn.grid(row=2, column=1,sticky="W", padx=10, pady=10)
+        search_btn.grid(row=0, column=2,sticky="W", padx=10, pady=10)
 
         #Album listbox
         list_albums_btn = tk.Button(window, text="List Albums", activebackground='red', command=self.list_albums_clicked)
@@ -89,9 +99,6 @@ class PlayTrack:
         next_track_btn = tk.Button(window, text="⏭️", command=self.next_track_clicked)
         next_track_btn.grid(row=4, column=2, padx=10, pady=10)
 
-        stop_btn = tk.Button(window, text="⏹️", command=self.stop_clicked)
-        stop_btn.grid(row=4, column=3, padx=10, pady=10)
-
         volume_down_btn = tk.Button(window, text="🔉", command=self.volume_down_clicked)
         volume_down_btn.grid(row=4, column=4, padx=10, pady=10)
 
@@ -109,6 +116,16 @@ class PlayTrack:
 
         self.list_tracks_clicked()
         self.load_playlist_clicked()
+
+    #create track function
+    def create_track_clicked(self):
+        self.status_lbl.configure(text="Create Track button was clicked!")
+        CreateTrackList(tk.Toplevel(self.window))
+    
+    #update track function
+    def update_track_clicked(self):
+        self.status_lbl.configure(text="Update Track button was clicked!")
+        UpdateTracks(tk.Toplevel(self.window))
 
     #play music function
     def play_music_clicked(self):
@@ -128,10 +145,6 @@ class PlayTrack:
         volume = pygame.mixer.music.get_volume()
         pygame.mixer.music.set_volume(volume - 0.1)
         self.status_lbl.configure(text=f"Volume now is {pygame.mixer.music.get_volume()}")
-
-    def stop_clicked(self):
-        pygame.mixer.music.stop()
-        self.status_lbl.configure(text="Music stopped")
 
     def next_track_clicked(self):
         key = int(self.current_key)

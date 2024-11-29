@@ -11,20 +11,21 @@ def set_text(text_area, content):
 
 class CreateTrackList:
     def __init__(self, window):
-        window.geometry("1000x610")
+        window.geometry("1050x610")
         window.title("Create Track List")
+        window.configure(bg="light blue")
 
         list_tracks_btn = tk.Button(window, text="List All Tracks", command=self.list_tracks_clicked)
         list_tracks_btn.grid(row=0, column=0, padx=10, pady=10)
 
-        self.list_txt = tkst.ScrolledText(window, width=58, height=12, wrap="none")
-        self.list_txt.grid(row=1, column=0, columnspan=3, sticky="W", padx=10, pady=10)
+        self.list_txt = tkst.ScrolledText(window, width=58, height=17, wrap="none")
+        self.list_txt.grid(row=1, column=0, columnspan=3, rowspan=6, sticky="W", padx=10, pady=10)
 
         self.name_lb = tk.Label(window, text="name:")
-        self.name_lb.grid(row=1, column=3, sticky="S", padx=1, pady=1)
+        self.name_lb.grid(row=1, column=3, padx=1, pady=1)
 
         self.input_name = tk.Entry(window, width=27)
-        self.input_name.grid(row=1, column=4, sticky="S", padx=5, pady=5)
+        self.input_name.grid(row=1, column=4, padx=5, pady=5)
 
         self.artist_lb = tk.Label(window, text="artist:")
         self.artist_lb.grid(row=2, column=3, padx=10, pady=10)
@@ -66,7 +67,7 @@ class CreateTrackList:
         self.btn_create.grid(row=7, column=4, padx=5, pady=5)
 
         self.status_lbl = tk.Label(window, text="", font=("Helvetica", 10))
-        self.status_lbl.grid(row=2, column=0, columnspan=4, sticky="W", padx=10, pady=10)
+        self.status_lbl.grid(row=8, column=0, columnspan=4, sticky="W", padx=10, pady=10)
 
         self.list_tracks_clicked()
 
