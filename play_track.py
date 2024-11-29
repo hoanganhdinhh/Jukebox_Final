@@ -17,7 +17,7 @@ def set_text(text_area, content):
 class PlayTrack:
     def __init__(self, window):
         self.window = window
-        window.geometry("1500x850")
+        window.geometry("1330x850")
         window.title("Playlist")
         window.configure(bg="light blue")
 
