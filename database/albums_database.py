@@ -20,8 +20,10 @@ def list_songs(album_name):
     if album_name in albums:
         output = f"Album: {album_name}\n"
         for song in albums[album_name]["songs"]:
-            output += f"{song}\n"
+            output += f"{song['name']}\n"
         return output
+    else:
+        return f"No album found with the name '{album_name}'"
     
 # Save the albums data to the JSON file
 def save_albums(file_path, albums):

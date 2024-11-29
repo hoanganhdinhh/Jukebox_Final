@@ -11,7 +11,7 @@ def set_text(text_area, content):
 
 class CreateTrackList:
     def __init__(self, window):
-        window.geometry("1050x610")
+        window.geometry("1050x520")
         window.title("Create Track List")
         window.configure(bg="light blue")
 

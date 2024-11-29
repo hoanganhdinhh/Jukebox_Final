@@ -74,18 +74,6 @@ class PlayTrack:
         search_btn = tk.Button(self.window, text="Search", command=self.search_func)
         search_btn.grid(row=0, column=2,sticky="W", padx=10, pady=10)
 
-        #Album listbox
-        list_albums_btn = tk.Button(window, text="List Albums", activebackground='red', command=self.list_albums_clicked)
-        list_albums_btn.grid(row=0, column=8, padx=10, pady=10)
-
-        self.albums_listbox = tk.Listbox(window, width=23, height=9)
-        scrollbar = tk.Scrollbar(window)
-        scrollbar.grid(row=1, column=11, sticky='ns')
-
-        self.albums_listbox.config(yscrollcommand=scrollbar.set)
-        scrollbar.config(command=self.listbox.yview)
-        self.albums_listbox.grid(row=1, column=8, columnspan=3, padx=10, pady=10)
-
         #play music func buttons
         play_music_btn = tk.Button(window, text="Play Track", command=self.play_music_clicked)
         play_music_btn.grid(row=3, column=0, padx=10, pady=10)
@@ -116,6 +104,7 @@ class PlayTrack:
 
         self.list_tracks_clicked()
         self.load_playlist_clicked()
+        self.show_image(0)
 
     #create track function
     def create_track_clicked(self):
@@ -265,12 +254,6 @@ class PlayTrack:
             pygame.mixer.music.play()
             self.status_lbl.configure(text="Music is playing")
 
-    #album listbox    
-    def list_albums_clicked(self):
-        self.albums_listbox.delete(0, tk.END)
-        album_list = "\n".join(albums.list_albums())
-        self.albums_listbox.insert(tk.END, album_list)
-        self.status_lbl.configure(text="List Albums button was clicked!")
 
 if __name__ == "__main__":  # only runs when this file is run as a standalone
     window = tk.Tk()        # create a TK object
