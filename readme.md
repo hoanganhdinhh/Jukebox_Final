@@ -2,7 +2,7 @@ My name is Dinh Nguyen Hoang Anh from class COS1203. Here is my coursework proje
 
 To use my Jukebox application, user will need to download the code first: 
 
-1. **Grab Git**: If user don't already have it, install Git on your computer. User can find it at [link to Git website].
+1. **Grab Git**: If user don't already have it, install Git on your computer. User can find it at <a src="https://git-scm.com/"> Git website</a>.
 2. **Open your terminal**: Launch the command prompt (Windows) or terminal (Mac/Linux).
 3. **Navigate to your download folder**: Use commands like cd to move to the directory where user want to save the Jukebox code.
 4. **Download the code**: Copy and paste this command:
