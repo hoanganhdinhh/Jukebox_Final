@@ -17,7 +17,7 @@ class PlayTrack:
     def __init__(self, window):
         self.window = window
         window.geometry("1330x850")
-        window.title("Playlist")
+        window.title("Play Track")
         window.configure(bg="light blue")
 
         list_tracks_btn = tk.Button(window, text="List All Tracks",activebackground='red', command=self.list_tracks_clicked)
