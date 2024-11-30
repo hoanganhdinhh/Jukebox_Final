@@ -1,13 +1,12 @@
 import tkinter as tk
 import font_manager as fonts
 from database.playlist_database import load_playlist, add_track, clear_playlist, get_file_path
-import database.albums_database as albums
 import tkinter.scrolledtext as tkst
 import track_library as lib
-import pygame
-from PIL import Image, ImageTk
 from create_track_list import CreateTrackList
 from update_tracks import UpdateTracks
+from PIL import Image, ImageTk
+import pygame
 
 def set_text(text_area, content):
     text_area.delete("1.0", tk.END)
@@ -245,11 +244,11 @@ class PlayTrack:
         selection = self.listbox.curselection()
         name = self.listbox.get(selection)
         file_path = get_file_path(name)
+
         if file_path is None:
             self.status_lbl.configure(text="No file found for this track")
         else:
-            music_file = file_path
-            pygame.mixer.music.load(music_file)
+            pygame.mixer.music.load(file_path)
             pygame.mixer.music.set_volume(0.6)
             pygame.mixer.music.play()
             self.status_lbl.configure(text="Music is playing")
